@@ -1,0 +1,35 @@
+@import '../../../styles/vars';
+@import '../../../styles/helpers';
+
+.ConfirmarVoto {
+  text-align: center;
+
+  .ContentMatch {
+    margin-top: to-perc(60);
+  }
+
+  .btns {
+    width: to-perc(280);
+    margin: 0px auto;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.is-small, .is-extraSmall {
+  .ConfirmarVoto {
+    width: 100%;
+    overflow: hidden;
+
+    .ContentMatch {
+      margin-top: 0px;
+      padding-top: 50px;
+    }
+
+    .btns {
+      width: 300px;
+    }
+  }
+}

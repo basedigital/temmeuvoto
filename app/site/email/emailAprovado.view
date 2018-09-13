@@ -1,0 +1,9 @@
+   <p>Olá <?=$this->data['nome']?>,</p>
+
+   <p>Seu cadastro foi aprovado por nossa equipe e encontra-se ativo em nossa plataforma. No próximo dia 10 de setembro o #TEMMEUVOTO será aberto para que os eleitores encontrem seus candidatos ao legislativo.</p>
+
+   <p>Caso encontre alguma informação errada em seu perfil após esta data, entre em contato conosco pelo e-mail <a style="color:#4a4a4a;" href="mailto:contato@temmeuvoto.com">contato@temmeuvoto.com</a></p>
+
+   <p>#TEMMEUVOTO é uma iniciativa independente e apartidária que vai ajudar o eleitor a decidir o que ele tem de mais valioso: o voto.</p>
+
+   <p>Compartilhe, divulgue e dissemine essa ideia em suas redes.</p>

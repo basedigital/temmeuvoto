@@ -1,0 +1,87 @@
+@import '../../styles/colors';
+
+.Select {
+  &.is-error {
+    input {
+      border: 1px solid #FF9191;
+    }
+  }
+
+  .wrap-select {
+    position: relative;
+    overflow: hidden;
+
+    font-family: 'Ubuntu';
+    font-size: 14px;
+
+    width: 100%;
+    color: #1c1c1c;
+    box-sizing: border-box;
+
+    background-color: #FFF;
+    border: 1px solid #D2D0D2;
+    border-radius: 3px;
+
+    padding: 10px;
+
+    select {
+      position: absolute;
+      z-index: 10;
+
+      top: 0px;
+      left: 0px;
+      bottom: 0px;
+      right: 0px;
+
+      width: 100%;
+      height: 100%;
+
+      opacity: 0;
+    }
+
+    input {
+      background-color: transparent;
+      width: 100%;
+      border: 0px;
+      border-radius: 0px;
+      padding:0px;
+    }
+  }
+
+  .arrow {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+
+    padding: 12px;
+
+    img {
+      width: 15px;
+      height: auto;
+    }
+  }
+
+  .error {
+    font-size: 14px;
+    color: $red;
+    font-style: italic;
+    margin-top: 5px;
+  }
+}
+
+.is-small, .is-extraSmall {
+  .Select {
+    width: 100%;
+    font-size: 16px;
+
+    .wrap-select {
+      padding: 10px;
+
+      input {
+        -webkit-appearance: none;
+        font-size: 16px;
+        border: 0px;
+      }
+    }
+  }
+}

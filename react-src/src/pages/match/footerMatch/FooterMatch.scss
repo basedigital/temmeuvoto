@@ -1,0 +1,65 @@
+@import '../../../styles/vars';
+@import '../../../styles/helpers';
+
+.FooterMatch {
+  .content-barcandidatos {
+    width: to-perc(656);
+    margin: auto;
+
+    border-bottom: 3px solid #000;
+
+    .text {
+      span {
+        cursor: pointer;
+        margin-left: 20px;
+        text-decoration: underline;
+      }
+    }
+
+    .list {
+      display: flex;
+      flex-direction: row;
+
+      justify-content: space-between;
+      align-items: center;
+
+      .item {
+        width: 100%;
+
+        .total {
+          margin-top: to-perc(5);
+        }
+      }
+    }
+  }
+}
+
+.is-small, .is-extraSmall {
+  .FooterMatch {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+
+    background-color: #808080;
+
+    .content-barcandidatos {
+      width: 100%;
+      border: 0px;
+      margin: 0px;
+      padding: 10px;
+
+      .text {
+        color: #FFF;
+        font-size: 16px;
+        font-weight: 400;
+        width: 250px;
+        margin: auto;
+      }
+
+      .Spacer {
+        display: none;
+      }
+    }
+  }
+}

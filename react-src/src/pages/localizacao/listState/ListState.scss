@@ -1,0 +1,43 @@
+@import '../../../styles/helpers';
+
+.ListState {
+  .list {
+    width: to-perc(300);
+    height: to-perc(400);
+    margin: auto;
+
+    .item {
+      cursor: pointer;
+
+      color: #acacac;
+
+      padding: to-perc(10);
+      margin-bottom: to-perc(10);
+
+      text-align: center;
+      font-style: italic;
+
+      &:last-child {
+        margin-bottom: 0px;
+      }
+
+      &:hover {
+        color: #000;
+      }
+    }
+  }
+}
+
+.is-small, .is-extraSmall {
+  .ListState {
+    .list {
+      width: 100%;
+      height: initial;
+
+      .item {
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

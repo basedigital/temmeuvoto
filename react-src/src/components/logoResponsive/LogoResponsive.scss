@@ -1,0 +1,20 @@
+@import '../../styles/helpers';
+
+.LogoResponsive {
+  display: inline-block;
+  vertical-align: top;
+
+  img {
+    width: to-perc(219);
+    height: auto;
+  }
+}
+
+.is-small, .is-extraSmall {
+  .LogoResponsive {
+    img {
+      width: 240px;
+      height: 22px;
+    }
+  }
+}

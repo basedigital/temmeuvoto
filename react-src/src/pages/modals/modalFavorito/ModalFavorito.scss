@@ -1,0 +1,34 @@
+@import '../../../styles/vars';
+@import '../../../styles/helpers';
+
+.ModalFavorito {
+  .Scrollbar {
+    width: to-perc(680);
+    height: 50vh;
+    margin: auto;
+
+    .list {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      justify-content: space-between;
+      align-items: center;
+
+      padding-right: to-perc(20);
+    }
+  }
+}
+
+.is-small, .is-extraSmall {
+  .ModalFavorito {
+    .Scrollbar {
+      width: 100%;
+      height: initial;
+
+      .list {
+        padding-right: 0px;
+      }
+    }
+  }
+}

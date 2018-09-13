@@ -1,0 +1,52 @@
+<?
+    $link = App::url();
+    $link = str_replace("admin/", "", App::url());
+?>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Content-Language" content="pt-br">
+		<title>#temmeuvoto</title>
+		<style type="text/css">
+			td > div {
+				line-height: 0;
+			}
+			div {display:block!important;}
+		</style>
+	</head>
+	<body>
+		<table align="center" border="0" cellpadding="0" cellspacing="0" style="width:600px;font-family: Verdana;font-size: 14px;font-weight: normal;font-style: normal;line-height: 2;letter-spacing: 0.5px;text-align: left;color: #4a4a4a;vertical-align: top;">
+			<tr>
+				<td width="600" style="padding:0; margin:0;">
+					<a href="<?=$link?>"><img src="<?=$link?>site/email/top.png" border="0" style="padding:0;margin:0;display:block"></a>
+				</td>
+			</tr>
+
+			<tr>
+				<td width="600" style="padding:0; margin:0;">
+					<table align="center" border="0" cellpadding="0" cellspacing="0" style="width:600px">
+						<tr>
+							<td style="padding:45px 58px;">
+								<@TARGET@>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+			<tr>
+				<td width="600" style="padding:0; margin:0;">
+					<table align="center" border="0" cellpadding="0" cellspacing="0" style="width:600px">
+						<tr>
+							<td width="600" style="padding:15px 41px; margin:0;font-size:12px;">
+								<p style="padding-top: 15px; border-top: #979797 1px solid; color:#4a4a4a;">Em caso de dúvidas entre em contato pelo email <a href="mailto:contato@temmeuvoto.com" style="color:#004587; text-decoration:none;">contato@temmeuvoto.com</a></p>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

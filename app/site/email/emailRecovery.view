@@ -1,0 +1,9 @@
+   <p>Olá <?=$this->data['nome']?>,</p>
+
+   <p>Foi solicitada a recuperação da sua senha de acesso à Plataforma #TEMMEUVOTO.</p>
+
+   <p>A nova senha criada é: <b><?=$this->data['pass']?></b></p>
+
+   <p>Caso hajam tentativas consecutivas de recuperação, não se preocupe: nosso sistema bloqueará automaticamente o acesso, evitando assim qualquer chance de fraude.</p>
+
+   <p>Nesse caso, entre em contato conosco pelo e-mail <a style="color:#4a4a4a;" href="mailto:contato@temmeuvoto.com">contato@temmeuvoto.com</a>.</p>

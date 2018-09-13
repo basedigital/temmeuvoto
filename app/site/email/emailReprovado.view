@@ -1,0 +1,5 @@
+   <p>Olá <?=$this->data['nome']?>,</p>
+
+   <p>Seu cadastro foi reprovado por nossa equipe por conter informações inconsistentes em seu perfil.</p>
+
+   <p>Caso queira revisar o conteúdo enviado para que ele possa ser novamente avaliado, entre em contato conosco pelo e-mail <a style="color:#4a4a4a;" href="mailto:contato@temmeuvoto.com">contato@temmeuvoto.com</a></p>

@@ -1,0 +1,27 @@
+@import '../../styles/vars';
+
+body.is-modal-top-open {
+  .MatchPage, .CandidatoPage{
+    display: none;
+  }
+}
+
+.ModalBarTop {
+  z-index: $z-top;
+
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+
+  background-color: #FFF;
+}
+
+.is-small,
+.is-extraSmall {
+  .ModalBarTop {
+    bottom: initial;
+    min-height: 100vh;
+  }
+}

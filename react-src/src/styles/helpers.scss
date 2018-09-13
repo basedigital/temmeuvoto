@@ -1,0 +1,7 @@
+@function to-perc($px) {
+  @return ($px/1440 * 100vw);
+}
+
+@function to-perc-max($px) {
+  @return ($px/1920* 100vw);
+}

@@ -1,0 +1,29 @@
+@import '../../styles/helpers';
+
+.Scrollbar {
+  text-align: left;
+
+  .content-scrollbar {
+    padding-right: 20px;
+  }
+
+  .track-vertical {
+    width: 3px !important;
+    background-color: #D8D8D8;
+  }
+
+  .scrollbar-vertical {
+    width: 100%;
+    background-color: #000;
+  }
+
+  .track-horizontal {
+    display: none;
+  }
+}
+
+.is-small, .is-extraSmall {
+  .content-scrollbar {
+    padding: 0px;
+  }
+}

@@ -1,0 +1,58 @@
+@import '../../styles/vars';
+@import '../../styles/helpers';
+
+.BarTop {
+  position: relative;
+  z-index: $z-top - 10;
+
+  .content-bartop {
+    width: 100%;
+    height: to-perc(112);
+    background-color: #9E9E9E;
+
+    .btn {
+      cursor: pointer;
+
+      width: to-perc(54);
+      height: to-perc(54);
+
+      border-radius: 50%;
+      background-color: #1c1c1c;
+
+      position: absolute;
+      bottom: 0px;
+      left: 50%;
+      margin-left: to-perc(-27);
+      margin-bottom: to-perc(-27);
+
+      box-shadow: 2px 5px 20px #c1c1c1;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+}
+
+.is-extraSmall, .is-small {
+  .BarTop {
+    height: 80px;
+
+    .content-bartop {
+      position: fixed;
+      top: 0px;
+      left: 0px;
+
+      height: 80px;
+
+      .btn {
+        width: 54px;
+        height: 54px;
+
+        margin-left: -27px;
+        margin-bottom: -27px;
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+@import '../../styles/vars';
+
+.Info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height:100vh;
+
+    .content {
+        max-width:780px;
+        text-align: center;
+
+        .icon {
+            display: inline-block;
+            vertical-align: top;
+        }
+    }
+}
+
+.is-small, .is-extraSmall {
+    .Info {
+        .content {
+            margin:auto;
+
+            .icon {
+                width:70px;
+                height: auto;
+            }
+        }
+    }
+}

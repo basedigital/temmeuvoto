@@ -1,0 +1,27 @@
+@import '../../styles/vars';
+@import '../../styles/helpers';
+
+.Favorite {
+  cursor: pointer;
+
+  opacity: 1;
+  transition: opacity .3s;
+
+  img {
+    width: to-perc(32);
+    height: to-perc(32);
+  }
+
+  &:hover {
+    opacity: .6;
+  }
+}
+
+.is-small, .is-extraSmall {
+  .Favorite {
+    img {
+      width: 32px;
+      height: 32px;
+    }
+  }
+}

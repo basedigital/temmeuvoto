@@ -1,0 +1,51 @@
+@import '../../../styles/vars';
+@import '../../../styles/helpers';
+
+.ModalText {
+  .modaltext-title {
+    text-align: center;
+    padding: to-perc(70) 0px to-perc(30) 0px;
+  }
+
+  .Scrollbar {
+    margin: auto;
+    width: to-perc(600);
+    height: calc(50vh);
+
+    font-style: italic;
+
+    p, div {
+      line-height: 150%;
+    }
+
+    a {
+      color: #787878;
+      text-decoration: underline;
+      margin-right: 10px;
+    }
+
+    .link {
+      font-weight: 500;
+      text-decoration: none;
+      color: #1c1c1c;
+      margin-right: 10px;
+    }
+  }
+}
+
+.is-small, .is-extraSmall {
+  .ModalText {
+    .Scrollbar {
+      width: 100%;
+      height: initial;
+
+      font-style: normal;
+      text-align: center;
+    }
+
+    .modaltext-title {
+      text-align: center;
+      padding: 60px 0px 20px;
+    }
+  }
+}

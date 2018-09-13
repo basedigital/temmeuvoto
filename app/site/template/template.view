@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <base rewrite="<@APP_USE_REWRITE@>" href="<?= App::$instance->config->extra['basehref'] ?>"/>
+		
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+		
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta http-equiv="Cache-control" content="public">
+
+        <meta http-equiv="lang" content="pt-BR"/>
+        <meta name="robots" content="INDEX,FOLLOW"/>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+
+        <meta property="og:locale" content="pt_BR"/>
+
+        <meta property="og:title" content="<?= Template::$metaTitle; ?>"/>
+        <meta property="og:site_name" content="TemMeuVoto"/>
+        <meta property="og:description" content="<?= Template::$metaDescription; ?>"/>
+
+        <meta property="og:type" content="website"/>
+        <meta property="og:image" content="<?= Template::$metaImage; ?>"/>
+        <meta property="og:image:type" content="image/jpeg"/>
+        <meta property="og:image:width" content="1200"/>
+        <meta property="og:image:height" content="630"/>
+
+        <meta name="description" content="<?= Template::$metaDescription; ?>"/>
+        <meta name="keywords" content=""/>
+
+        <meta name="twitter:card" content="photo"/>
+        <meta name="twitter:site" content="@temmeuvoto"/>
+        <meta name="twitter:title" content="#temmeuvoto"/>
+        <meta name="twitter:description" content="<?=Template::$metaDescription;?>" />
+        <meta name="twitter:image" content="<?=Template::$metaImage;?>"/>
+
+        <link href="fonts/stylesheet.css" rel="stylesheet"/>
+
+        <link rel="stylesheet" href="bundle/styles.css?v=2"/>
+
+        <link rel="shortcut icon" href="images/favicon.ico"/>
+      
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script> 
+
+        <@APP_HEAD@>
+
+        <@APP_CSS@>
+
+        <@APP_JS@>
+
+        <title><?=Template::$metaTitle;?></title>
+
+		<!-- Google Tag Manager -->
+
+		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+
+		})(window,document,'script','dataLayer','GTM-WCRQHK6');</script>
+
+		<!-- End Google Tag Manager -->
+	</head>
+    <body>
+		<!-- Google Tag Manager (noscript) -->
+
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WCRQHK6"
+
+		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+		<!-- End Google Tag Manager (noscript) -->
+
+        <@ANALYTICS@>
+
+        <div id="app">
+            <div id="react-loading">
+                <div class="spinner">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+
+        <@APP_BODY@>
+
+        <div class="crawler">
+            <@CRAWLER@>
+        </div>
+
+        <@APP_DEBUG@>
+
+        <script src="bundle/app.js?v=10"></script>
+      
+        <@APP_SCRIPT_BODY@>
+   </body>
+</html>

@@ -1,0 +1,39 @@
+@import '../../../styles/vars';
+@import '../../../styles/helpers';
+
+.Home {
+  margin: auto;
+  text-align: center;
+
+  width: to-perc(520);
+
+  .HeaderMatch {
+    display: none;
+  }
+
+  .content-home {
+    margin: 100px 0px;
+  }
+
+  .icon {
+    display: inline-block;
+  }
+}
+
+.is-small, .is-extraSmall {
+  .Home {
+    width: 100%;
+
+    .HeaderMatch {
+      display: flex;
+    }
+
+    .content-home {
+      margin: 40px 0px;
+    }
+
+    .Button {
+      width: 100%;
+    }
+  }
+}

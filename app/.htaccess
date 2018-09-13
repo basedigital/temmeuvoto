@@ -1,0 +1,41 @@
+php_value short_open_tag 1
+
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+
+    RewriteCond %{HTTP:Authorization} ^(.*)
+    RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
+
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ site/index.php
+
+    #php_flag  log_errors on
+    #php_value error_log  D:\www\2018\temmeuvoto\website\PHP_errors.log
+</IfModule>
+
+<IfModule mod_deflate.c>
+   AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/x-javascript text/xml application/xhtml+xml application/xml application/x-httpd-php application/x-httpd-fastphp
+</IfModule>
+
+<IfModule dir_module>
+    DirectoryIndex site/index.php
+</IfModule>
+
+<FilesMatch ".(ico|jpg|jpeg|png|gif|woff2|woff|ttf|otf)$">
+    Header set Vary "Accept-Encoding"
+    Header set Cache-Control "max-age=1800, public"
+
+    RequestHeader unset Cookie
+    Header unset Cookie
+    Header unset Set-Cookie
+</FilesMatch>
+
+<FilesMatch ".(js|css)$">
+    Header set Vary "Accept-Encoding"
+    Header set Cache-Control "max-age=900, public"
+
+    RequestHeader unset Cookie
+    Header unset Cookie
+    Header unset Set-Cookie
+</FilesMatch>

@@ -1,0 +1,24 @@
+@import '../../../../styles/vars';
+@import '../../../../styles/helpers';
+
+.Mapa {
+  .img {
+    width: to-perc(290);
+    height: auto;
+    margin: auto;
+  }
+
+  .btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.is-small, .is-extraSmall {
+  .Mapa {
+    .img {
+     width: 250px;
+    }
+  }
+}

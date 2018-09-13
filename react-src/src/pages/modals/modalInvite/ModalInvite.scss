@@ -1,0 +1,49 @@
+@import '../../../styles/vars';
+@import '../../../styles/helpers';
+
+.ModalInvite {
+  .list {
+    width: 300px;
+    margin: auto;
+
+    a {
+      display: block;
+      box-sizing: border-box;
+    }
+
+    .item {
+      cursor: pointer;
+
+      width: 100%;
+      padding: 0px 30px;
+      height: 74px;
+
+      border-radius: 4px;
+      background-color: #FFF;
+
+      box-shadow: 2px 2px 15px #e1e1e1;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+
+      transition: opacity .3s;
+      &:hover {
+        opacity:.5;
+      }
+
+      img {
+        width: 30px;
+        height: auto;
+      }
+
+      span {
+        color: #1c1c1c;
+
+        font-size: 17px;
+        margin-left: 15px;
+      }
+    }
+  }
+}

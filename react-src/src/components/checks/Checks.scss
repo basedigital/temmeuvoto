@@ -1,0 +1,27 @@
+@import '../../styles/colors';
+@import '../../styles/helpers';
+
+.Checks {
+  &:last-child {
+    margin-bottom: 0px;
+  }
+
+  .column {
+
+  }
+
+  .error {
+    font-size: 14px;
+    color: $red;
+    font-style: italic;
+    margin: to-perc(10);
+  }
+}
+
+.is-small, .is-extraSmall {
+  .Checks {
+    .error {
+      margin: 10px;
+    }
+  }
+}

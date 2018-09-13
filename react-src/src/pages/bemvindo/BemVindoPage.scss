@@ -1,0 +1,315 @@
+@import '../../styles/vars';
+
+.BemVindoPage {
+  background-color: #000;
+  min-height: 100vh;
+
+  width: 100%;
+  overflow: hidden;
+
+  .Logo {
+    z-index: $z-top;
+
+    position: absolute;
+    top: 70px;
+    left: 20vw;
+  }
+
+  .btn-next {
+    position: relative;
+
+    cursor: pointer;
+
+    float: right;
+    margin-top: 30px;
+    margin-right: 20vw;
+
+    padding: 10px;
+
+    font-size: 14px;
+    color: #FFF;
+    font-weight: bold;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    span {
+      position: relative;
+    }
+
+    &:hover {
+      span {
+        &:after {
+          position: absolute;
+          bottom: 0px;
+          left: 0px;
+          content: ' ';
+          width: 100%;
+          height: 1px;
+          background-color: #FFF;
+        }
+      }
+    }
+
+    img {
+      margin-left: 10px;
+    }
+  }
+
+  .slick-slider {
+    margin-top: 12vh;
+  }
+
+  .slick-list {
+    padding: 0 20vw;
+  }
+
+  .slick-dots {
+    margin-top: 40px;
+    margin-left: 20vw;
+    width: auto;
+    bottom: inherit;
+
+    li {
+      width: 6px;
+      height: 6px;
+      border-radius: 3px;
+      background-color: #3D3C3C;
+      margin-right: 60px;
+
+      &.slick-active {
+        background-color: #FFF;
+      }
+
+      button {
+        content: ' '
+      }
+    }
+  }
+
+  .btn-start {
+    display: none;
+  }
+
+  .ItemSlider {
+    position: relative;
+    width: 40vw;
+    min-width: 650px;
+    text-align: left;
+
+    &.is-selected {
+      .ItemSlider__content {
+        .title {
+          opacity: 1;
+        }
+        .text {
+          opacity: 1;
+        }
+      }
+      img {
+        opacity: 1;
+      }
+    }
+
+    &.is-prev {
+      opacity: .5;
+    }
+
+    .ItemSlider__content {
+      //width:600px;
+
+      position: relative;
+      z-index: 2;
+
+      padding-top: 250px;
+
+      .title {
+        opacity: .2;
+
+        font-size: 100px;
+        color: #fff;
+        font-weight: bold;
+        line-height: 90px;
+
+        transition: opacity .3s;
+      }
+
+      .text {
+        opacity: 0;
+
+        font-size: 16px;
+        color: #fff;
+        line-height: 160%;
+        max-width: 530px;
+
+        margin-top: 20px;
+
+        transition: opacity .3s;
+      }
+    }
+
+    .Button {
+      position: absolute;
+      z-index: 10;
+      top: 300px;
+      right: -250px;
+    }
+
+    img {
+      opacity: .4;
+
+      z-index: 1;
+
+      position: absolute;
+      top: 0px;
+      left: 120px;
+
+      transition: opacity .3s;
+    }
+  }
+}
+
+.is-extraSmall, .is-small {
+  .BemVindoPage {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+    text-align: center;
+
+    .Logo {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      margin-left: -110px;
+    }
+
+    .slick-slider {
+      margin-top: 0px;
+    }
+
+    .slick-list {
+      padding: 0px;
+    }
+
+    .slick-dots {
+      position: absolute;
+      z-index: 10;
+      width: 100%;
+      bottom: 60px;
+      margin: auto;
+      text-align: center;
+
+      li {
+        margin: 0px 20px;
+      }
+    }
+
+    .btn-start {
+      display: block;
+
+      position: absolute;
+      z-index: 20;
+      left: 20px;
+      right: 20px;
+      bottom: 110px;
+      opacity: 0;
+      transition: opacity .3s;
+
+      width: auto !important;
+
+      &.is-visible {
+        opacity: 1;
+      }
+    }
+
+    .btn-next {
+      position: absolute;
+      left: 0px;
+      right: 0px;
+      bottom: 90px;
+
+      float: none;
+      margin: auto;
+    }
+
+    .ItemSlider {
+      position: relative;
+      width: 100%;
+      height: 88vh;
+
+      min-width: auto;
+      text-align: center;
+
+      &.is-prev {
+        opacity: 1;
+      }
+
+      .ItemSlider__content {
+        position: absolute;
+        bottom: 100px;
+        left: 0px;
+        right: 0px;
+        padding: 0px;
+
+        .title, .text {
+          opacity: 1;
+        }
+
+        .title {
+          font-size: 22px;
+          font-weight: bold;
+          br {
+            display: none;
+          }
+        }
+
+        .text {
+          margin-top: 0px;
+          font-size: 16px;
+          padding: 0px 20px;
+        }
+      }
+
+      img {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+
+        opacity: 1;
+
+        width: 100%;
+        height: auto;
+      }
+
+      .Button {
+        display: none;
+      }
+    }
+  }
+}
+
+@media only screen and (orientation: landscape) {
+  .is-small, .is-extraSmall {
+    .BemVindoPage {
+      position: absolute;
+      min-height: 100vh;
+
+      .ItemSlider {
+        min-height: 100vh;
+      }
+      .slick-dots {
+        bottom: 50px !important;;
+      }
+      .btn-start, .btn-next {
+        bottom: 20px !important;
+      }
+    }
+  }
+}

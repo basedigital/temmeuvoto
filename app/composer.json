@@ -1,0 +1,9 @@
+{
+    "require": {
+        "firebase/php-jwt": "^5.0",
+        "mailgun/mailgun-php": "~1.8",
+        "guzzlehttp/psr7": "~1.4",
+        "aws/aws-sdk-php": "2.*",
+        "phpoffice/phpspreadsheet": "~1.4"
+    }
+}

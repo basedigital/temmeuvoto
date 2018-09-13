@@ -1,0 +1,407 @@
+<?
+importFast("modules/api/ResponseError.site");
+importFast("modules/api/ResponseSuccess.site");
+
+class ApiDocument extends Document
+{
+    public $return;
+
+    public function __construct($return = false)
+    {
+        parent::__construct();
+        $this->defaultAction = 'foo';
+
+        $this->disabledCaptcha = false;
+
+        $this->return = $return;
+        if (!$return) {
+            header("Connection: Keep-alive");
+            header('Content-Type: application/json');
+        }
+    }
+
+    public function foo()
+    {
+        $this->cached();
+
+        $return = new ResponseError(ResponseError::INVALID_DATA);
+        $return->toJSON();
+    }
+
+    public function config() {
+        $this->cached();
+
+        $data = array();
+
+        $data['estados'] = DBUtil::select("select * from estado order by name", array(), true)->getValuesStringKeys();
+
+        $data['prioridade1'] = DBUtil::select("select * from prioridade where prioridade.type = 1 order by prioridade.order asc", array(), true)->getValuesStringKeys();
+
+        $data['prioridade2'] = DBUtil::select("select * from prioridade where prioridade.type = 2 order by prioridade.order asc", array(), true)->getValuesStringKeys();
+
+        $data['economia'] = DBUtil::select("select * from economia order by economia.order asc", array(), true)->getValuesStringKeys();
+
+        $data['costume'] = DBUtil::select("select * from costume order by costume.order asc", array(), true)->getValuesStringKeys();
+
+        $data['onde'] = DBUtil::select("select * from cadastro_onde order by cadastro_onde.order asc", array(), true)->getValuesStringKeys();
+
+        $data['partidos'] = DBUtil::select("select distinct partido from candidato order by candidato.partido", array(), true)->getValuesStringKeys();;
+
+        echo json_encode($data, JSON_PRETTY_PRINT);
+        die();
+    }
+
+    public function listCandidatos() {
+        $this->cached();
+
+        $uf = @$_GET['uf'];
+        $ref_cargo = @$_GET['ref_cargo'];
+        $partido = @$_GET['partido'];
+
+        $page = @$_GET['page'];
+
+        $limit = 10;
+        $offset = $page * $limit;
+
+        if (!$uf || !$ref_cargo) {
+            $return = new ResponseError(ResponseError::INVALID_DATA);
+            $return->toJSON();
+        }
+
+        $cargo = DBUtil::selectRowSql("select * from candidato_cargo where id = ?", array($ref_cargo), true);
+
+        $columns = $this->getMatchCandidatos();
+        if ($ref_cargo == 1) {
+            $uf = 'BR';
+        }
+
+        if ($ref_cargo == 1 || $ref_cargo == 3) {
+           $columns = 'C.id*0';
+        }
+
+        $dataWhere = array($uf, $ref_cargo); //7 questões
+
+        $where = ' 1 = 1 ';
+        if ($partido) {
+            $dataWhere[] = $partido;
+            $where .= ' AND partido = ? ';
+        }
+
+        $total = $this->getTotalQuestions();
+
+        $sql = "
+                SELECT
+                    C.id,
+                    C.nome,
+                    C.partido,
+                    C.ocupacao,
+                    C.numero,
+                    C.genero,
+                    C.image,
+
+                    ($columns) as total,
+                    $total as totalQ
+
+                FROM
+                    candidato as C, cidade as CITY
+
+                WHERE
+                    C.ref_cidade = CITY.id AND
+                    C.uf = ? AND
+                    C.cargo_codigo = ? AND
+                    C.ref_status != 5 AND
+                    $where
+                order by
+                    ($columns) DESC,
+                    C.nome ASC
+
+				limit $limit offset $offset
+        ";
+
+        $list = DBUtil::select($sql, $dataWhere, true, 120);
+
+        $list = $list->getValuesStringKeys();
+
+        $rs = array("list"=>$list, "cargo"=>ArrayUtil::stringKeysOnly($cargo));
+        $return = new ResponseSuccess($rs);
+        $return->toJSON();
+    }
+
+    public function getCandidatos($candidatos = '') {
+        $this->cached();
+
+        $candidatos = $this->normatizeCandidatos($candidatos);
+        $list = array();
+
+        if ($candidatos) {
+            $list = DBUtil::select("SELECT C.id, C.image, C.nome, C.partido, C.ocupacao, C.genero, C.cargo_codigo, C.numero, CARGO.name as cargo,  CARGO.position from candidato AS C, candidato_cargo as CARGO where C.id in ($candidatos) and CARGO.id = C.cargo_codigo order by CARGO.order asc", array(), true)->getValuesStringKeys();
+        }
+
+        $cargos = DBUtil::select("select * from candidato_cargo where fl_enabled = 1", array(), true)->getValuesStringKeys();
+
+        $return = new ResponseSuccess(array('list'=>$list, 'cargos'=>$cargos));
+        $return->toJSON();
+    }
+
+    private function normatizeCandidatos($candidatos){
+        $this->cached();
+
+        if (!$candidatos)
+            return null;
+
+        $candidatos = explode(",", $candidatos);
+
+        $newCandidatos = array();
+
+        foreach ($candidatos as $k=>$v) {
+            if (is_numeric($v))
+                $newCandidatos[] = $v;
+        }
+
+        $newCandidatos = join(",", $newCandidatos);
+
+        return $newCandidatos;
+    }
+
+    public function candidato($ref_candidato) {
+        $this->cached();
+
+        if (!$ref_candidato) {
+            $return = new ResponseError(ResponseError::INVALID_DATA);
+            $return->toJSON();
+        }
+
+        $candidato = DBUtil::selectRowSql("select id, nome, image, numero, partido, ocupacao, data_nascimento, idade, estado_civil, genero, cor_raca, naturalidade, escolaridade, coligacao_nome, coligacao_descricao, cargo_codigo, ref_prioridade, ref_prioridade2, detalhamento, detalhamento2, social_facebook, social_instagram, social_youtube, social_twitter, social_email, social_site, social_doacao, eleito_8, fl_reu, fl_investigado, fl_condenado, fl_pacto_demo from candidato where id = ?", array($ref_candidato), true, 120);
+        $candidato['coligacao'] = $candidato['coligacao_nome'].' - '.$candidato['coligacao_descricao'];
+
+        $cargo = DBUtil::selectRowSql("select id, name from candidato_cargo where id = ?", array($candidato['cargo_codigo']), true);
+        $candidato['cargo'] = @ArrayUtil::stringKeysOnly($cargo);
+
+        $candidato['prioridade1'] = @ArrayUtil::stringKeysOnly(DBUtil::selectRowSql("select * from prioridade where id = ?", array($candidato['ref_prioridade']), true));
+        $candidato['prioridade2'] = @ArrayUtil::stringKeysOnly(DBUtil::selectRowSql("select * from prioridade where id = ?", array($candidato['ref_prioridade2']), true));
+
+        $candidato['bens'] = DBUtil::select("select * from candidato_bens where ref_candidato = ?", array($candidato['id']), true)->getValuesStringKeys();
+
+        $candidato['acao'] = DBUtil::select("select id, name, type, number, department, link, description from candidato_investigado where ref_candidato = ?", array($candidato['id']), 120, true)->getValuesStringKeys();
+
+        $candidato = ArrayUtil::stringKeysOnly($candidato);
+
+        $return = new ResponseSuccess($candidato);
+        $return->toJSON();
+    }
+
+    //http://192.168.0.105:3000/api/totalCandidatos/?uf=RS&processo=1&renovacao=1&prioridade1=1&prioridade2=6&ref_cidade=1201&economia=1&costume=1
+    private function getTotalQuestions() {
+        $list = array('processo', 'renovacao', 'prioridade1', 'prioridade2', 'ref_cidade', 'economia','costume');
+        $count = 0;
+        foreach ($list as $k=>$v) {
+            if ($_GET[$v])
+                $count += 1;
+        }
+
+        return $count;
+    }
+    private function getMatchCandidatos() {
+            $columns = array();
+
+            $processo = @$_GET['processo'];
+            $renovacao = @$_GET['renovacao'];
+            $prioridade1 = @$_GET['prioridade1'];
+            $prioridade2 = @$_GET['prioridade2'];
+            $ref_cidade = @$_GET['ref_cidade'];
+            $economia = @$_GET['economia'];
+            $costume = @$_GET['costume'];
+
+            if ($processo == '1') { //{label: 'Não pode ser investigado ou réu ou condenado em nenhum processo', value: 1},
+                $columns[] = ' (C.fl_investigado != 1 && C.fl_reu != 1 && C.fl_condenado != 1) ';
+            } elseif ($processo == '2') { //{label: 'Não pode ser condenado em nenhum processo', value: 2},
+                $columns[] = ' C.fl_condenado != 1';
+            } else {
+                $columns[] = ' 1';
+            }
+
+            if ($renovacao == '1') {
+                $columns[] = ' C.eleito_8 = 0 ';
+            } elseif ($renovacao == '2') {
+                $columns[] = ' C.eleito_8 = 1 ';
+            } else {
+                $columns[] = ' 1';
+            }
+
+            if ($prioridade1) {
+                $columns[] = ' IFNULL(C.ref_prioridade, 0) = '.$prioridade1;
+            } else {
+                $columns[] = ' 1';
+            }
+
+            if ($prioridade2) {
+                $columns[] = ' IFNULL(C.ref_prioridade2, 0) = '.$prioridade2;
+            } else {
+                $columns[] = ' 1';
+            }
+
+            if ($ref_cidade*1 > 0) {
+                $cidade = DBUtil::selectRowSql("select id, lat, lng from cidade where id = ?", array($ref_cidade), true);
+
+                $lat = $cidade['lat'];
+                $lng = $cidade['lng'];
+                $columns[] = " (distance(CITY.lat, CITY.lng, $lat, $lng)) <= 100";
+
+                /*$where[] = ' (distance(CITY.lat, CITY.lng, ?, ?)) <= 100 ';
+                $dataWhere[] = $cidade['lat'];
+                $dataWhere[] = $cidade['lng'];*/
+            } else {
+                $columns[] = ' 1';
+            }
+
+            if ($economia) {
+                $columns[] = ' IFNULL(C.ref_economia,0) = '.$economia;
+            } else {
+                $columns[] = ' 1';
+            }
+
+            if ($costume) {
+                $columns[] = ' IFNULL(C.ref_costume,0) = '.$costume;
+            } else {
+                $columns[] = ' 1';
+            }
+
+            $columns = '('.join(') + (', $columns).')';
+
+            return $columns;
+    }
+
+    public function totalCandidatos() {
+        $this->cached();
+
+        $uf = @$_GET['uf'];
+
+        if ($uf) {
+            $dataWhere = array($uf, 7); //7 questões
+
+            $columns = $this->getMatchCandidatos();
+
+            $sql = "
+                Select total, candidato_cargo.`name` as name, candidato_cargo.id as id, candidato_cargo.order, candidato_cargo.position FROM candidato_cargo left join
+                    (
+                        SELECT
+                            CARGO.id as cargo_id,
+                            CARGO.name as cargo_name,
+                            COUNT(CARGO.ID) as total
+                        FROM
+                            candidato as C, candidato_cargo as CARGO, cidade as CITY
+
+                        WHERE
+                            CARGO.fl_enabled = 1 AND
+                            C.cargo_codigo = CARGO.id AND
+                            C.ref_cidade = CITY.id AND
+                            C.ref_status != 5 AND
+                            C.uf = ? AND
+
+                            ($columns >= ?)
+
+                        GROUP BY
+                            cargo_id, cargo_name
+                    ) as CCC
+
+                ON
+                    candidato_cargo.id = cargo_id
+
+                WHERE
+                    candidato_cargo.fl_enabled = 1
+
+                ";
+
+            $list = DBUtil::select($sql, $dataWhere, true, 120);
+            $list = $list->getValuesStringKeys();
+
+            $rs = array("list"=>$list);
+            $return = new ResponseSuccess($rs);
+            $return->toJSON();
+        }
+
+        $return = new ResponseError(ResponseError::INVALID_DATA);
+        $return->toJSON();
+    }
+
+    public function searchCandidato($name, $ref_cargo) {
+        $this->cached();
+
+        if (!$name || strlen($name) < 3) {
+            $return = new ResponseError(ResponseError::INVALID_DATA);
+            $return->toJSON();
+        }
+
+        $where = '';
+        $whereData =  array('%'.$name.'%');
+
+        if ($ref_cargo*1 > 0) {
+            $where = ' AND CARGO.id = ? ';
+            $whereData[] = $ref_cargo;
+        }
+
+        $rs = DBUtil::select("select C.id, C.nome, C.partido, C.numero, C.image, CARGO.position from candidato as C, candidato_cargo as CARGO where C.nome like ? and CARGO.id = C.cargo_codigo AND CARGO.fl_enabled = 1 $where order by C.nome limit 20", $whereData, true);
+        $rs = $rs->getValuesStringKeys();
+
+        $return = new ResponseSuccess($rs);
+        $return->toJSON();
+    }
+
+    public function searchCity($name, $uf) {
+        $this->cached();
+
+        if (!$name || strlen($name) < 3 || !$uf) {
+            $return = new ResponseError(ResponseError::INVALID_DATA);
+            $return->toJSON();
+        }
+
+        $rs = DBUtil::select("select cidade.id, cidade.name, estado.uf from cidade, estado where cidade.ref_estado = estado.id and cidade.name like ? and estado.uf = ? limit 10", array($name.'%', $uf), true)->getValuesStringKeys();
+
+        $return = new ResponseSuccess($rs);
+        $return->toJSON();
+    }
+
+    public function searchCityLatLng($lat, $lng, $uf) {
+       $this->cached();
+
+       if (!$lat || !$lng || !$uf) {
+           $return = new ResponseError(ResponseError::INVALID_DATA);
+           $return->toJSON();
+       }
+
+       $rs = DBUtil::selectRowSql("select cidade.id, cidade.name, estado.uf from cidade, estado where estado.uf = ? and cidade.ref_estado = estado.id order by distance(cidade.lat, cidade.lng,?,?) asc limit 1", array($uf, $lat, $lng), true);
+
+       $return = new ResponseSuccess(ArrayUtil::stringKeysOnly($rs));
+       $return->toJSON();
+    }
+
+    public function cadastro() {
+        $data = json_decode(file_get_contents('php://input'), true);
+
+        $email = $data['email'];
+        $where = $data['where'];
+
+        if (!$email || !$where) {
+            $return = new ResponseError(ResponseError::INVALID_DATA);
+            $return->toJSON();
+        }
+
+        $rs = DBUtil::insert("cadastro", array("email", "ref_cadastro_onde", "dt_created"), array($email, $where, date('U')));
+
+        if ($rs->isSuccess()) {
+            $return = new ResponseSuccess(array());
+            $return->toJSON();
+        } else {
+            $return = new ResponseError(ResponseError::DB_ERROR);
+            $return->toJSON();
+        }
+    }
+
+    private function cached() {
+          $seconds_to_cache = 3600;
+          header('Vary: Accept-Encoding');
+          header("Cache-Control: max-age=$seconds_to_cache, public");
+    }
+}
+
+?>

@@ -1,0 +1,37 @@
+@import '../../../styles/vars';
+@import '../../../styles/helpers';
+
+.ModalPesquisarCandidatos {
+  .Scrollbar {
+    width: to-perc(250) !important;
+    height: 50vh;
+
+    .list {
+      padding-right: 20px;
+
+      .item {
+        text-align: left;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        font-style: normal;
+        color: #1c1c1c;
+
+        .image {
+          width: 60px;
+          height: 60px;
+          background-size: cover;
+          background-position: top center;
+          border-radius: 4px;
+          flex-shrink: 0;
+        }
+
+        .info {
+          width: 100%;
+          margin-left: 15px;
+        }
+      }
+    }
+  }
+}

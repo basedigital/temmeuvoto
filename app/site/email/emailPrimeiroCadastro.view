@@ -1,0 +1,13 @@
+   <p>Olá <?=$this->data['nome']?>,</p>
+
+   <p>Bem-vindo ao #TEMMEUVOTO, a plataforma que vai ajudar os brasileiros a encontrar seus candidatos ao legislativo.</p>
+
+   <p>Sua senha de acesso é: <b><?=$this->data['pass']?></b></p>
+
+   <p><a style="color:#4a4a4a" href="https://temmeuvoto.com/candidato" target="_blank">Clique aqui</a>, selecione "JÁ TENHO MINHA SENHA DE ACESSO" e insira o seu <b>CPF</b> e <b>SENHA</b> acima para acessar a plataforma.</p>
+
+   <p>Caso encontre alguma informação errada em seu perfil, entre em contato conosco pelo e-mail <a style="color:#4a4a4a;" href="mailto:contato@temmeuvoto.com">contato@temmeuvoto.com</a>.</p>
+
+   <p>#TEMMEUVOTO é uma iniciativa independente e apartidária que vai ajudar o eleitor a decidir o que ele tem de mais valioso: o voto.</p>
+
+   <p>Participe e fique conhecido por milhares de eleitores.</p>

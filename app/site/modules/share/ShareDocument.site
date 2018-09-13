@@ -1,0 +1,60 @@
+<?
+
+class ShareDocument extends Document
+{
+    public function __construct()
+    {
+        parent::__construct();
+        $this->defaultAction = 'foo';
+    }
+
+    public function foo()
+    {
+        die(-1);
+    }
+
+    public function invite($foo='') {
+          Template::$metaImage = App::url().'images/share.png';
+          Template::$metaTitle =  App::$instance->getSystemVars('share_title');
+          Template::$metaDescription = App::$instance->getSystemVars('share_invite_desc');
+
+          App::$instance->getTemplate()->addChild(new Controller(new View('<script>window.location = "'.App::url().'";</script>')), 'CRAWLER');
+    }
+
+    public function candidatos($candidatos, $foo = '')
+    {
+        $names = array();
+        if ($candidatos) {
+            $rs = DBUtil::select("select id, nome from candidato where id in (?)", array($candidatos), true)->getValues();
+            foreach ($rs as $k=>$v) {
+                $names[] = $v['nome'];
+            }
+        }
+
+        Template::$metaImage = App::url().'images/share.png';
+        Template::$metaTitle =  App::$instance->getSystemVars('share_title');
+
+        $description = 'Esses são os candidatos que mais se alinham com o que eu quero para o Brasil. Eles #temmeuvoto ';
+        $description .= "\n";
+        $description .= "\n";
+        $description .= join(',', $names);
+        $description .= "\n";
+        $description .= "\n";
+        $description .= ' Acesse www.temmeuvoto.com, responda as perguntas e veja quais candidatos mais se alinham com o que você quer.';
+
+        Template::$metaDescription = $description;
+
+        App::$instance->getTemplate()->addChild(new Controller(new View('<script>window.location = "'.App::url("candidatos/".$candidatos).'";</script>')), 'CRAWLER');
+    }
+
+    public function politico($ref_candidato, $foo = '')
+    {
+        Template::$metaImage = App::url().'images/share.png';
+        Template::$metaTitle =  App::$instance->getSystemVars('share_title');
+        Template::$metaDescription = App::$instance->getSystemVars('share_candidato_desc');
+
+        App::$instance->getTemplate()->addChild(new Controller(new View('<script>window.location = "'.App::url("politico/".$ref_candidato).'";</script>')), 'CRAWLER');
+    }
+}
+
+?>

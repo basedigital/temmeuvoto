@@ -1,0 +1,56 @@
+@import '../../../styles/vars';
+@import '../../../styles/helpers';
+
+.HeaderMatch {
+  width: 90%;
+  margin: 0px auto;
+  margin-top: to-perc(20);
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  .item-left, .item-right {
+    width: to-perc(100);
+  }
+
+  .item-right {
+    text-align: right;
+
+    .btn {
+      cursor: pointer;
+
+      display: inline-block;
+      vertical-align: top;
+    }
+  }
+}
+
+.is-small, .is-extraSmall {
+  .HeaderMatch {
+    position: relative;
+    width:100%;
+    margin:15px 0px;
+
+    .item-left, .item-right{
+      width: initial;
+      width: 20px;
+      height: 20px;
+    }
+
+    .btn-help {
+      display: none;
+    }
+
+    .btn {
+      width: 20px;
+      height: 20px;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+}

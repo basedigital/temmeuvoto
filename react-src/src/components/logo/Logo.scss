@@ -1,0 +1,18 @@
+@import '../../styles/vars';
+
+.Logo {
+    display: inline-block;
+    vertical-align: top;
+    img {
+      width: 220px;
+      height: auto;
+    }
+}
+
+.is-small, .is-extraSmall {
+    .Logo {
+       img {
+
+       }
+    }
+}

@@ -1,0 +1,55 @@
+$z-modal:100;
+
+.fake-modal {
+  display: none;
+}
+
+.is-modal-open {
+  overflow: hidden;
+}
+
+.Modal {
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  position: fixed;
+  z-index: $z-modal+1;
+
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  background-color: rgba(0, 0, 0, .87);
+
+  overflow: auto;
+
+  transition: visibility .3s, opacity .3s;
+  visibility: hidden;
+  opacity: 0;
+
+  &.is-visible {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .bg-modal {
+    z-index: $z-modal;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    width: calc(100% - 18px);
+    height: 100%;
+
+    background-color: transparent;
+  }
+
+  .content-modal {
+    position: relative;
+    z-index: $z-modal + 5;
+    margin: auto;
+  }
+}

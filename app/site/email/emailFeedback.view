@@ -1,0 +1,3 @@
+   <p>Olá <?=$this->data['nome']?>,</p>
+
+   <p>Seu cadastro foi enviado e será avaliado por nossa equipe. Se tudo estiver correto, logo mais você receberá um e-mail de confirmação informando que seu perfil já está ativo.</p>

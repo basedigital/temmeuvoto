@@ -1,0 +1,100 @@
+@import '../../styles/colors';
+@import '../../styles/helpers';
+
+.CandidatoVoto {
+  display: inline-block;
+  vertical-align: top;
+  text-align: left;
+
+  margin-bottom: to-perc(50);
+
+  .content-cadidatovoto {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    background-color: #FFF;
+    border-radius: 4px;
+
+    width: to-perc(312);
+    height: to-perc(100);
+    overflow: hidden;
+
+    .image {
+      flex-shrink: 0;
+
+      width: to-perc(100);
+      height: to-perc(100);
+
+      background-size: cover;
+      background-position: top center;
+    }
+
+    .info {
+      padding: to-perc(10);
+    }
+  }
+
+  .total {
+    text-align: center;
+
+    padding: to-perc(5);
+    background-color: #1c1c1c;
+    color: #FFF;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .total-perc {
+      flex-shrink: 0;
+      width: to-perc(98);
+      border-right:2px solid #FFF;
+    }
+    .total-text {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  .btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .Button {
+      width: 100%;
+    }
+  }
+}
+
+.is-extraSmall, .is-small {
+  .CandidatoVoto {
+    margin: auto;
+    margin-bottom: 40px;
+    width: 100%;
+
+    .content-cadidatovoto {
+      width: 100%;
+      height: 100px;
+
+      box-shadow: 4px 3px 13px 1px rgba(0, 0, 0, 0.09);
+
+      .image {
+        width: 100px;
+        height: 100px;
+      }
+
+      .info {
+        padding: 15px;
+      }
+    }
+
+    .total {
+      padding: 5px;
+      .total-perc {
+        width:100px;
+      }
+    }
+  }
+}

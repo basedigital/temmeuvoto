@@ -1,0 +1,22 @@
+<?    
+    class Template extends HTMLComponent{
+        public static $metaImage;
+        public static $metaDescription;
+        public static $metaTitle;
+
+        /**
+        * @var Controller
+        */
+        public static $middle;
+
+        public function __construct(){
+            parent::__construct();
+
+            $this->setView(new FileView('template/template.view'));
+
+            Template::$metaImage = App::url().'images/share.jpg';
+            Template::$metaTitle =  App::$instance->getSystemVars('share_title');
+            Template::$metaDescription = App::$instance->getSystemVars('share_description');
+        }
+    }
+?>

@@ -1,0 +1,59 @@
+<?
+    class ResponseError
+    {
+        const INVALID_DATA = 'invalid_data';
+        const USER_NOTFOUND = 'user_notfound';
+        const USER_INVALID_PASSWORD = 'user_invalid_password';
+        const USER_INVALID_JWT = 'user_invalid_jwt';
+        const USER_INVALID_PERMISSION = 'user_invalid_permission';
+        const USER_NOT_EMAIL = 'user_not_email';
+        const USER_PASSWORD_WEAK = 'user_password_weak';
+        const USER_BLOCKED = 'user_blocked';
+        const USER_DATA_COMPLETE = 'user_data_complete';
+        const DB_ERROR = 'db_error';
+        const INVALID_CAPTCHA = 'invalid_captcha';
+        const USER_DATA_PASSWORD = 'user_data_password';
+
+        private $data = array(
+            ResponseError::INVALID_DATA=>array(404, 'Os dados solicitados são inválidos.'),
+            ResponseError::USER_NOTFOUND=>array(404, 'O usuário não foi encontrado'),
+            ResponseError::USER_INVALID_PASSWORD=>array(404, 'Senha incorreta. Tente novamente.'),
+            ResponseError::USER_INVALID_JWT=>array(401, 'Sessão expirada, você precisa logar novamente.'),
+            ResponseError::USER_INVALID_PERMISSION=>array(404, 'Permissão inválida.'),
+            ResponseError::USER_NOT_EMAIL=>array(404, 'Você não tem email vinculado a sua conta.'),
+            ResponseError::USER_PASSWORD_WEAK=>array(404, 'A senha precisa conter no mínimo 6 caracteres.'),
+            ResponseError::USER_BLOCKED=>array(404, 'O seu acesso foi bloqueado, consulte a secretaria.'),
+            ResponseError::DB_ERROR=>array(404, 'Houve um erro na hora de tentar salvar os dados, tente novamente.'),
+            ResponseError::INVALID_CAPTCHA=>array(404, 'Captcha inválido.'),
+            ResponseError::USER_DATA_COMPLETE=>array(404, 'Você já completou o cadastro.'),
+            ResponseError::USER_DATA_PASSWORD=>array(404, 'Você já possui senha.'),
+        );
+
+        private $message;
+        private $return;
+        private $status;
+
+        public function __construct($status, $message = null)
+        {
+            $this->message = $message;
+            $this->status = $status;
+            $this->return = $this->data[$status];
+        }
+
+        public function toJSON() {
+              header('Content-Type: application/json');
+              http_response_code($this->return[0]);
+
+              echo json_encode(
+                 array("error"=>
+                    array(
+                          "status"=>$this->return[0],
+                          "message"=>$this->message ?: $this->return[1],
+                          "status"=>$this->status,
+                    )
+              ), JSON_PRETTY_PRINT);
+
+              die();
+        }
+    }
+?>

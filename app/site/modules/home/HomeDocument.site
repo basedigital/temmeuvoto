@@ -1,0 +1,22 @@
+<?
+
+class HomeDocument extends Document
+{
+    public function __construct()
+    {
+        $seconds_to_cache = 1800;
+        header('Vary: Accept-Encoding');
+        header("Cache-Control: max-age=$seconds_to_cache, public");
+
+        parent::__construct();
+        $this->defaultAction = 'home';
+    }
+
+    public function home()
+    {
+        $c = new Controller(new FileView('modules/home/home.view'));
+        App::$instance->getTemplate()->addChild($c, 'CRAWLER');
+    }
+}
+
+?>

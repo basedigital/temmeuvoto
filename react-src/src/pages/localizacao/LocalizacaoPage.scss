@@ -1,0 +1,35 @@
+@import '../../styles/vars';
+@import '../../styles/helpers';
+
+.LocalizacaoPage {
+  text-align: center;
+
+  .title {
+    margin: to-perc(66);
+    color: #1C1C1C;
+  }
+}
+
+.is-small, .is-extraSmall {
+  .LocalizacaoPage {
+    margin:40px 0px;
+
+    .title {
+      width:300px;
+      margin: 0px auto;
+      text-align: left;
+
+      br {
+        display: none;
+      }
+    }
+
+    .ListState {
+      margin-top: 20px;
+    }
+
+    .Button {
+      width:100%;
+    }
+  }
+}

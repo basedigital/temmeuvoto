@@ -1,0 +1,94 @@
+@import "vars.scss";
+@import "carousel.scss";
+@import "default.scss";
+@import "sizes.scss";
+@import "colors.scss";
+
+body, html {
+  position: relative;
+  font-family: 'ubuntu', sans-serif;
+  background-color: #F9F9F9;
+  color: #1c1c1c;
+
+  min-width: 320px;
+
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  &.is-modal-open {
+    overflow: hidden;
+  }
+}
+
+#react-loading {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: #FFF;
+
+  .spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -22px;
+    margin-top: -22px;
+
+    height: 45px;
+    width: 45px;
+  }
+
+  .spinner span {
+    border-radius: 40px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    border: 3px solid $dark;
+    opacity: 0;
+    animation: scale 3s ease-out infinite;
+    -webkit-animation: scale 3s ease-out infinite;
+  }
+
+  .spinner span:nth-child(2) {
+    animation-delay: 2s;
+    -webkit-animation-delay: 2s;
+  }
+
+  .spinner span:nth-child(3) {
+    animation-delay: 1s;
+    -webkit-animation-delay: 1s;
+  }
+}
+
+@-webkit-keyframes scale {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0);
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes scale {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}

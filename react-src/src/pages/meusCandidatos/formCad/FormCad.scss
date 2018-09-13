@@ -1,0 +1,20 @@
+@import '../../../styles/vars';
+@import '../../../styles/helpers';
+
+.FormCad {
+  .form {
+    width: 300px;
+    margin: auto;
+  }
+}
+
+.is-small, .is-extraSmall {
+  .form {
+    width:260px;
+    .Select {
+      input {
+        font-size:12px;
+      }
+    }
+  }
+}

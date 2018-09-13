@@ -1,0 +1,25 @@
+.lnh-150 {
+  line-height: 150%
+}
+
+$z-modal: 40;
+$z-top: 30;
+$z-middle: 20;
+$z-background: 10;
+
+.z-modal {
+  z-index: $z-modal !important;
+}
+
+.z-top {
+  z-index: $z-top !important;
+}
+
+.z-middle {
+  z-index: $z-middle !important;
+}
+
+.z-background {
+  z-index: $z-background !important;
+}
+

@@ -1,0 +1,51 @@
+@import '../../styles/vars';
+@import '../../styles/helpers';
+
+.LoadingCenter {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+.Loading {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity .3s;
+
+  .loading {
+    position: relative;
+    box-sizing: border-box;
+    width: to-perc(40);
+    height: to-perc(40);
+    border-radius: 100%;
+    border: 6px solid rgba(0, 0, 0, 0.2);
+    border-top-color: #000;
+    animation: spin 1s infinite linear;
+  }
+
+  &.is-small {
+    .loading {
+      width: to-perc(18);
+      height: to-perc(18);
+      border: 3px solid rgba(0, 0, 0, 0.2);
+      border-top-color: #000;
+    }
+  }
+}
+.is-extraSmall, .is-small {
+  .Loading {
+    .loading {
+      width: 40px;
+      height: 40px;;
+    }
+  }
+  &.is-small {
+    .loading {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}

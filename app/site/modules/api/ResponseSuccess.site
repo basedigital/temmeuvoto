@@ -1,0 +1,21 @@
+<?
+    class ResponseSuccess
+    {
+        private $data;
+
+        public function __construct($data)
+        {
+            $this->data = $data;
+        }
+
+        public function toJSON() {
+            header('Content-Type: application/json');
+
+            echo json_encode(array(
+                "data"=>$this->data
+            ), JSON_PRETTY_PRINT);
+
+            die();
+        }
+    }
+?>

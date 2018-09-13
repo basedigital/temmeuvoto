@@ -1,0 +1,214 @@
+@import '../../styles/vars';
+@import '../../styles/helpers';
+
+.MeusCandidatosPage {
+  position: relative;
+  width: 100%;
+  overflow: auto;
+
+  .Scrollbar {
+    margin: 0px auto;
+
+    width: to-perc(570);
+    height: 70vh;
+  }
+
+  .print {
+    position: absolute;
+    top: -1000px;
+    left: -1000px;
+
+    z-index: 1;
+    display: none;
+    width: 600px;
+    margin: auto;
+
+    text-align: center;
+    padding-bottom: 20px;
+
+    .bar {
+      width: 100%;
+      height: auto;
+    }
+
+    .list-print {
+      margin-top: 20px;
+    }
+  }
+
+  .list {
+    padding-right: to-perc(20);
+
+    .item {
+      margin-bottom: to-perc(30);
+    }
+
+    .line {
+      width: 100%;
+      height: 1px;
+      background-color: #D8D8D8;
+      margin: to-perc(20) 0px;
+
+      &:first-child {
+        margin-top: 0px;
+      }
+    }
+
+    .box {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      .box-items {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        div {
+          cursor: pointer;
+
+          width: to-perc(36);
+          height: to-perc(36);
+          margin-left: to-perc(20);
+
+          transition: opacity .3s;
+          &:hover {
+            opacity:.5;
+          }
+
+          img {
+            width: 100%;
+            height: auto;
+          }
+        }
+      }
+    }
+  }
+}
+
+.is-small, .is-extraSmall {
+  .MeusCandidatosPage {
+    padding-bottom:30px;
+
+    .Scrollbar {
+      width: 100%;
+      height: initial;
+    }
+
+    .content-meuscandidatos {
+      .t1, .t2 {
+        text-align: left;
+      }
+
+      .t2 {
+        font-size: 24px;
+        font-weight: 300;
+        color: #1c1c1c;
+      }
+
+      .list {
+        padding-right: 20px;
+
+        .item {
+          margin-bottom: 30px;
+        }
+
+        .line {
+          margin: 20px 0px;
+        }
+
+        .box {
+          text-transform: uppercase;
+
+          .t3 {
+
+            text-transform: uppercase;
+            font-weight: 600;
+          }
+
+          .t3, .t4 {
+            font-size: 16px;
+          }
+
+          .box-items {
+            div {
+              width: 30px;
+              height: 30px;
+              margin-left: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.ItemPrint {
+  text-align: left;
+
+  width: 312px;
+  margin: 20px auto;
+
+  .cargo {
+    font-size: 18px;
+  }
+  .content-itemprint {
+    margin-top: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    border-radius: 4px;
+    box-shadow: 4px 3px 13px 1px rgba(0, 0, 0, 0.09);
+    overflow: hidden;
+
+    background-color: #FFF;
+
+    .image {
+      flex-shrink: 0;
+
+      width: 100px;
+      height: 100px;
+      background-size: cover;
+      background-position: top center;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .info {
+      margin-left: 10px;
+
+      .name {
+        font-size: 16px;
+      }
+
+      .partido {
+        margin-top: 15px;
+
+        font-size: 14px;
+        color: #ACACAC;
+      }
+
+      .numero {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+@media print {
+  .Menu, .content-meuscandidatos {
+    display: none;
+  }
+  .print {
+    display: block !important;
+    position: relative !important;
+    top: 0px !important;
+    left: 0px !important;
+  }
+}

@@ -1,0 +1,51 @@
+@import '../../../styles/vars';
+@import '../../../styles/helpers';
+
+.ContentMatch {
+  width: to-perc(570);
+  margin: auto;
+
+  text-align: center;
+
+  .Scrollbar {
+    height: to-perc(320);
+  }
+
+  .text-and-help {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .btn-help {
+      display: none;
+    }
+  }
+}
+
+.is-small, .is-extraSmall {
+  .ContentMatch {
+    width: 100%;
+    padding-bottom: 80px;
+
+    .Scrollbar {
+      height: initial;
+    }
+
+    .text-and-help {
+      .btn-help {
+        display: block;
+        width: 24px;
+        height: 24px;
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+
+    .title-contentmatch {
+      text-align: left;
+    }
+  }
+}

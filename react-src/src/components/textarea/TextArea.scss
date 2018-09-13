@@ -1,0 +1,57 @@
+@import '../../styles/colors';
+
+.TextArea {
+    & {
+        position: relative;
+        text-align: left;
+    }
+
+    &.is-error {
+        input {
+            border:1px solid #FF9191;
+        }
+    }
+
+    textarea {
+        width: 100%;
+        font-family: 'Ubuntu';
+        font-size:14px;
+        color:#1c1c1c;
+        box-sizing: border-box;
+
+        background-color:#FFF;
+        border:1px solid #D2D0D2;
+        border-radius:3px;
+        
+        height:200px;
+
+        padding: 10px;
+        resize: none;
+
+        &::placeholder, &:-ms-input-placeholder, &::-ms-input-placeholder { 
+            color:#9A9898;
+            opacity: 1; 
+        }
+    }
+
+    .count {
+        text-align:right;
+    }
+
+    .error {
+        font-size:14px;
+        color: $red;
+        font-style: italic;
+        margin-top:5px;
+    }
+}
+
+.is-small, .is-extraSmall {
+    .TextArea {
+        textarea {
+            width: 100%;
+            font-size:16px;
+            padding:10px;
+        }
+    }
+}

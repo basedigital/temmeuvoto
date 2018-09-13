@@ -1,0 +1,14 @@
+@import '../../../styles/vars';
+@import '../../../styles/helpers';
+
+.Prioridade1 {
+
+}
+
+.is-small, .is-extraSmall {
+  .Prioridade1 {
+    .Scrollbar {
+      margin:20px 0px;
+    }
+  }
+}

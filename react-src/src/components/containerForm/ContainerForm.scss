@@ -1,0 +1,27 @@
+@import '../../styles/vars';
+
+.ContainerForm {
+    max-width:700px;
+    margin:auto;
+
+    text-align: center;
+
+    .btn-help {
+        cursor: pointer;
+
+        position:absolute;
+        top:30px;
+        right:100px;
+    }
+}
+
+.is-extraSmall, .is-small {
+    .ContainerForm {
+        padding:10px 20px;
+
+        .btn-help {
+            top:10px;
+            right:60px;
+        }
+    }
+}

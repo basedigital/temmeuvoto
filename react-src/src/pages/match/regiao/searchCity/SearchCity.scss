@@ -1,0 +1,115 @@
+@import '../../../../styles/vars';
+@import '../../../../styles/helpers';
+
+.SearchCity {
+  .input {
+    position: relative;
+
+    width: to-perc(200);
+
+    padding: to-perc(5);
+    border: 1px solid #D2D0D2;
+    border-radius: 3px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    margin: auto;
+
+    img {
+      display: inline-block;
+      vertical-align: top;
+
+      width: to-perc(16);
+      height: auto;
+    }
+
+    input {
+      width: 100%;
+      padding: to-perc(5);
+      margin: 0px;
+      border: 0px;
+
+      font-size: 14px;
+      color: #1c1c1c;
+
+      font-family: Ubuntu, Arial;
+
+      margin-right: to-perc(30);
+    }
+
+    .Loading {
+      width: to-perc(30);
+
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+    }
+  }
+
+  .Scrollbar {
+    width: to-perc(200);
+    height: to-perc(380);
+    margin: auto;
+    text-align: center;
+
+    .list {
+      .item {
+        cursor: pointer;
+
+        color: #acacac;
+
+        padding: to-perc(10) 0px;
+
+        text-align: center;
+        font-style: italic;
+
+        &:last-child {
+          margin-bottom: 0px;
+        }
+
+        &:hover {
+          color: #000;
+        }
+      }
+    }
+
+  }
+}
+
+.is-small, .is-extraSmall {
+  .SearchCity {
+    .input {
+      width: 200px;
+      padding: 5px;
+
+      img {
+        width: 16px;
+      }
+
+      input {
+        width: 100%;
+        padding:5px;
+        margin-right: 30px;
+      }
+
+      .Loading {
+        width: 30px;
+      }
+    }
+
+    .Scrollbar {
+      width: 300px;
+      height: initial;
+
+      .list {
+        .item {
+          padding: 10px 0px;
+        }
+      }
+    }
+  }
+}

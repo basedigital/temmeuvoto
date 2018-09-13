@@ -1,0 +1,31 @@
+@import '../../../../styles/vars';
+@import '../../../../styles/helpers';
+
+.ItemEmptyCandidato {
+  width: 100%;
+
+  border-radius: 4px;
+  background-color: #FFF;
+  padding: to-perc(25) to-perc(20);
+
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: to-perc(15);
+
+  &.is-empty {
+    border: 2px solid #000000;
+    background-color: #e6e6e6;
+  }
+
+  &:last-child {
+    margin-bottom: 0px;
+  }
+}
+
+.is-small, .is-extraSmall {
+  .ItemEmptyCandidato {
+    padding: 25px 20px;
+    margin-bottom: 15px;
+  }
+}

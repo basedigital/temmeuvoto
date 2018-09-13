@@ -1,0 +1,118 @@
+@import '../../../styles/vars';
+@import '../../../styles/helpers';
+
+.ListaCandidatos {
+  .HeaderMatch {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    left: 0px;
+  }
+
+  .btn-help {
+    cursor: pointer;
+
+    position: absolute;
+    top: to-perc(30);
+    right: to-perc(30);
+  }
+
+  .ButtonArrow {
+    padding-left: to-perc(20);
+  }
+
+  .btn-help-mobile {
+    display: none;
+  }
+
+  .Scrollbar {
+    width: to-perc(600);
+    margin: 0px auto;
+
+    height: to-perc(500);
+  }
+
+  .list {
+    width: to-perc(570);
+    margin: 0px auto;
+
+    .item {
+      width: 100%;
+
+      border-radius: 4px;
+      background-color: #FFF;
+      padding: to-perc(25) to-perc(20);
+
+      display: flex;
+      justify-content: space-between;
+
+      margin-bottom: to-perc(15);
+
+      &.is-empty {
+        border: 2px solid #000000;
+        background-color: #e6e6e6;
+      }
+
+      &:last-child {
+        margin-bottom: 0px;
+      }
+    }
+  }
+}
+
+.is-small, .is-extraSmall {
+  .ListaCandidatos {
+    .HeaderMatch {
+      position: relative;
+      top: initial;
+      width: 100%;
+      left: initial;
+    }
+
+    .btn-help {
+      display: none;
+    }
+
+    .ButtonArrow {
+      padding-left: 0px;
+    }
+
+    .ContentMatch {
+      padding-bottom: 10px;
+      text-align: left;
+
+      .Scrollbar {
+        width: 100%;
+        margin: auto;
+        height: initial;
+      }
+    }
+
+    .btn-help-mobile {
+      display: block;
+
+      position: relative;
+      top: initial;
+      right: initial;
+
+      float: right;
+
+      margin-bottom: 15px;
+    }
+
+    .list {
+      width: 100%;
+
+      .ButtonArrow {
+        span {
+          display: none;
+        }
+      }
+
+      .item {
+        padding: 25px 20px;
+        margin-bottom: 15px;
+      }
+    }
+  }
+}

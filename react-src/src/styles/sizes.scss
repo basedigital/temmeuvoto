@@ -1,0 +1,100 @@
+@import "helpers";
+
+.size-10 {
+  font-size: 10px;
+  font-size: to-perc(10);
+}
+
+.size-12 {
+  font-size: 12px;
+  font-size: to-perc(12);
+}
+
+.size-14 {
+  font-size: 14px;
+  font-size: to-perc(14);
+}
+
+.size-15 {
+  font-size: 15px;
+  font-size: to-perc(15);
+}
+
+.size-16 {
+  font-size: 16px;
+  font-size: to-perc(16);
+}
+
+.size-17 {
+  font-size: 17px;
+  font-size: to-perc(17);
+}
+
+.size-18 {
+  font-size: 18px;
+  font-size: to-perc(18);
+}
+
+.size-20 {
+  font-size: 20px;
+  font-size: to-perc(20);
+}
+
+.size-24 {
+  font-size: 24px;
+  font-size: to-perc(24);
+}
+
+.size-26 {
+  font-size: 26px;
+  font-size: to-perc(26);
+}
+
+.size-28 {
+  font-size: 28px;
+  font-size: to-perc(28);
+}
+
+.size-34 {
+  font-size: 34px;
+  font-size: to-perc(34);
+}
+
+.is-small, .is-extraSmall {
+  .size-10 {
+    font-size: 10px;
+  }
+  .size-12 {
+    font-size: 12px;
+  }
+  .size-14 {
+    font-size: 14px;
+  }
+  .size-15 {
+    font-size: 15px;
+  }
+  .size-16 {
+    font-size: 16px;
+  }
+  .size-17 {
+    font-size: 17px;
+  }
+  .size-18 {
+    font-size: 18px;
+  }
+  .size-20 {
+    font-size: 20px;
+  }
+  .size-24 {
+    font-size: 22px;
+  }
+  .size-26 {
+    font-size: 26px;
+  }
+  .size-28 {
+    font-size: 28px;
+  }
+  .size-34 {
+    font-size: 28px; //TOOD
+  }
+}

@@ -1,0 +1,41 @@
+@import '../../styles/vars';
+
+.ModalHelp {
+  .btn-close {
+    cursor: pointer;
+
+    position: fixed;
+    top: 20px;
+    right: 20px;
+  }
+
+  .text {
+    margin: auto;
+    max-width: 860px;
+    padding: 0px 20px;
+
+    a {
+      color: #FFF;
+      text-decoration: underline;
+    }
+  }
+}
+
+.is-small,
+.is-extraSmall {
+  .btn-close {
+    width: 40px;
+    height: 40px;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  .text {
+    width: 300px;
+    max-width: inherit;
+    margin: auto;
+    font-size:18px;
+  }
+}

@@ -1,0 +1,31 @@
+@import '../../../styles/vars';
+@import '../../../styles/helpers';
+
+.Transparencia {
+  width:100%;
+  text-align: center;
+
+  .content-home {
+    text-align: center;
+
+    width: to-perc(520);
+    margin: 100px auto;
+  }
+
+  .icon {
+    display: inline-block;
+  }
+}
+
+.is-small, .is-extraSmall {
+  .Transparencia {
+    .content-home {
+      width: 100%;
+      margin: 40px 0px;
+    }
+
+    .Button {
+      width: 100%;
+    }
+  }
+}

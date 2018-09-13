@@ -1,0 +1,33 @@
+import CandidatoVoto from "./candidatoVoto/CandidatoVoto";
+
+export {default as Bg} from './bg/Bg';
+export {default as Logo} from './logo/Logo';
+export {default as Button} from './button/Button';
+export {default as TextInput} from './textinput/TextInput';
+export {default as ComponentConnect} from './componentConnect/ComponentConnect';
+export {default as Spacer} from './spacer/Spacer';
+export {default as Loading} from './loading/Loading';
+export {default as Title} from './title/Title';
+export {default as ContainerForm} from './containerForm/ContainerForm';
+export {default as TextArea} from './textarea/TextArea';
+export {default as Check} from './check/Check';
+export {default as Checks} from './checks/Checks';
+export {default as Icon} from './icon/Icon';
+export {default as Modal} from './modal/Modal';
+export {default as ModalHelp} from './modalHelp/ModalHelp';
+export {default as Info} from './info/Info';
+export {default as LogoResponsive} from './logoResponsive/LogoResponsive';
+export {default as Scrollbar} from './scrollbar/Scrollbar';
+export {default as BarTop} from './barTop/BarTop';
+export {default as ErrorRequest} from './errorRequest/ErrorRequest';
+export {default as ButtonArrow} from './buttonArrow/ButtonArrow';
+export {default as ModalBarTop} from './modalBarTop/ModalBarTop';
+export {default as Menu} from './menu/Menu';
+export {default as LoadingState} from './loadingState/LoadingState';
+export {default as CandidatoVoto} from './candidatoVoto/CandidatoVoto';
+export {default as CandidatoInfo} from './candidatoInfo/CandidatoInfo';
+export {default as Favorite} from './favorite/Favorite';
+export {default as Select} from './select/Select';
+
+export {getRouter} from './../utils/RouterUtils';
+export computeState from './../modules/compute/computeState';

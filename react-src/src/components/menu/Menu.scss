@@ -1,0 +1,150 @@
+@import '../../styles/helpers';
+@import '../../styles/vars';
+@import '../../styles/colors';
+
+.Menu {
+  position: relative;
+
+  min-height: 100vh;
+
+  padding: 0px to-perc(56);
+  padding-bottom: to-perc(20);
+
+  background-color: #000;
+
+  .LogoResponsive {
+    margin: to-perc(48) 0px to-perc(10) 0px;
+  }
+
+  .btn-close {
+    display: none;
+
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 20px;
+    img {
+      width: 14px;
+      height: auto;
+    }
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+
+    font-size: to-perc(18);
+    font-weight: 300;
+
+    color: #FFF;
+
+    margin: to-perc(22) 0px;
+
+    transition: opacity .3s;
+
+    .icon {
+      margin-left: to-perc(10);
+      width: 20px;
+      height: 20px;
+    }
+
+    &.small {
+      color: #9a9999;
+      font-size: to-perc(16);
+      margin: to-perc(14) 0px;
+
+      &:last-child {
+        margin-bottom: 0px;
+      }
+    }
+    &.btn-white {
+      margin:0px;
+      padding:to-perc(5) to-perc(10);
+      background-color:#FFF;
+      color:#3d3c3c;
+      display: inline-block;
+      vertical-align: top;
+      font-weight: normal;
+    }
+
+    &:hover {
+      opacity: .5;
+    }
+
+    &.is-selected {
+      opacity: .5;
+    }
+
+    &.is-disabled {
+      pointer-events: none;
+      opacity:.3;
+    }
+  }
+
+  .line {
+    width: 100%;
+    height: 1px;
+    background-color: #3d3c3c;
+    margin: to-perc(26) 0px;
+  }
+}
+
+.is-extraSmall, .is-small {
+  .Menu {
+    position: fixed;
+    z-index: $z-top + 100;
+
+    transform: translateX(100%);
+    transition: transform .3s;
+
+    &.is-open {
+      transform: translateX(0px);
+    }
+
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+
+    min-height: initial;
+    height: 100%;
+
+    .btn-close {
+      display: block;
+    }
+
+    .content-menu {
+      height: 100%;
+      overflow: auto;
+
+      padding: 30px;
+    }
+
+    .LogoResponsive {
+      margin: 0px;
+      img {
+        width: 200px;
+        height: auto;
+      }
+    }
+
+    a {
+      font-size: 18px;
+      margin: 26px 0px;
+
+      .icon {
+        margin-left: 10px;
+      }
+
+      &.btn-white {
+        margin:0px;
+        padding:5px 15px;
+      }
+    }
+
+    .line {
+      margin: 25px 0px;
+    }
+  }
+}
